@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="image_metadata_editor_winui3.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:image_metadata_editor_winui3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel>
+        <CommandBar x:Name="commandBar"  IsOpen="True" Closing="CommandBarClose">
+            <AppBarButton Icon="OpenFile" Label="Open Images" Click="BtnOpenFileDialogClick"/>
+            <AppBarButton Icon="Folder" Label="Open Folder" Click="BtnOpenFolderDialogClick"/>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Save" Label="Save image" Click="BtnSaveClick"/>
+            <AppBarButton Icon="Save" Label="Save File and move to next" Click="BtnSaveAndMoveClick"/>
+            <AppBarButton Icon="Save" Label="Save all" Click="BtnSaveAllClick"/>
+
+            <CommandBar.Content>
+                <TextBlock x:Name="informationText" Text="Open images or a folder containing images to start" Margin="12,14"/>
+            </CommandBar.Content>
+        </CommandBar>
+        <Grid>
+            <ComboBox x:Name="comboImagesNames" SelectionChanged="ComboImagesNamesSelectedIndexChanged" ItemsSource="{x:Bind filesNames}" Header="Current Image" Width="200" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="20"/>
+            <Image x:Name="image" Height="500"   Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="20" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <CalendarDatePicker x:Name="date" Header="Pick image date" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="20"/>
+            <TextBox x:Name="address" Header="Enter image Address:" PlaceholderText="Address" Grid.Column="0" Grid.Row="1" Margin="20" />
+            <TextBox x:Name="city" Header="Enter image city:" PlaceholderText="city" Grid.Column="1" Grid.Row="1" Margin="20" />
+            <TextBox x:Name="state" Header="Enter image state:" PlaceholderText="state" Grid.Column="2" Grid.Row="1" Margin="20"/>
+            <TextBox x:Name="country" Header="Enter image country:" PlaceholderText="country" Grid.Column="3" Grid.Row="1" Margin="20"/>
+            <Button Content="Update Geolocation" Click="BtnUpdateGeoLocation" Grid.Column="0" Grid.Row="2" Margin="20"/>
+            <ProgressRing x:Name="progress" IsActive="false" Grid.Column="1" Grid.Row="2"/>
+            <TextBlock x:Name="latitude" Grid.Column="2" Grid.Row="2" Margin="20"/>
+            <TextBlock x:Name="longitude" Grid.Column="3" Grid.Row="2" Margin="20"/>
+        </Grid>
+        
+
+    </StackPanel>
+
+</Page>
